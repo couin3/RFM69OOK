@@ -36,15 +36,12 @@ volatile byte RFM69OOK::_mode;  // current transceiver state
 volatile int RFM69OOK::RSSI; 	// most accurate RSSI during reception (closest to the reception)
 RFM69OOK* RFM69OOK::selfPointer;
 
-
 //////////////////////////////////////////////////
 // My 433 MHz Sensors
 //////////////////////////////////////////////////
 // TX3 : 433.764 MHz - 2.4 kBps
 // DIO : 433.? - 433.? - 4.8 kBps
 // Xiron : 433.856 ~ x.943 MHz - 2.4 kBps
-//////////////////////////////////////////////////
-// Efergy(FSK) : 433.472 / x.511 / x.554 - 10 kBps
 //////////////////////////////////////////////////
 
 bool RFM69OOK::initialize()
