@@ -44,7 +44,7 @@ RFM69OOK* RFM69OOK::selfPointer;
 // DIO : 433.? - 433.? - 4.8 kBps
 // Xiron : 433.856 ~ x.943 MHz - 2.4 kBps
 //////////////////////////////////////////////////
-// Efergy(FSK) : 433.471 / x.511 / x.551 - 10 kBps
+// Efergy(FSK) : 433.472 / x.511 / x.554 - 10 kBps
 //////////////////////////////////////////////////
 
 bool RFM69OOK::initialize()
@@ -53,20 +53,13 @@ bool RFM69OOK::initialize()
   {
     /* 0x01 */ { REG_OPMODE, RF_OPMODE_SEQUENCER_OFF | RF_OPMODE_LISTEN_OFF | RF_OPMODE_STANDBY },
     /* 0x02 */ { REG_DATAMODUL, RF_DATAMODUL_DATAMODE_CONTINUOUSNOBSYNC | RF_DATAMODUL_MODULATIONTYPE_OOK | RF_DATAMODUL_MODULATIONSHAPING_00 }, // no shaping
-    ///* 0x03 */ { REG_BITRATEMSB, RF_BITRATEMSB_32768 }, // bitrate: 32.768 kbps
-    ///* 0x04 */ { REG_BITRATELSB, RF_BITRATELSB_32768 },
-    /* 0x03 */ { REG_BITRATEMSB, RF_BITRATEMSB_4800 }, // bitrate: 4.096 kbps
+    /* 0x03 */ { REG_BITRATEMSB, RF_BITRATEMSB_4800 }, // bitrate: 4.800 kbps
     /* 0x04 */ { REG_BITRATELSB, RF_BITRATELSB_4800 },
-     /* 0x07 */ { REG_FRFMSB, 0x6C }, // Rem : FStep = FXOsc / 2^19
-     /* 0x08 */ { REG_FRFMID, 0x77 }, //       FRF = FStep * Frf
-     /* 0x09 */ { REG_FRFLSB, 0x5C }, //       FRF = 433.865 MHz
-    ///* 0x07 */ { REG_FRFMSB, RF_FRFMSB_434 }, // Rem : FStep = FXOsc / 2^19
-    ///* 0x08 */ { REG_FRFMID, RF_FRFMID_434 }, //       FRF = FStep * Frf
-    ///* 0x09 */ { REG_FRFLSB, RF_FRFLSB_434 }, //       FRF = 434.0 MHz
+    /* 0x07 */ { REG_FRFMSB, 0x6C }, // Rem : FStep = FXOsc / 2^19
+    /* 0x08 */ { REG_FRFMID, 0x76 }, //       FRF = FStep * Frf
+    /* 0x09 */ { REG_FRFLSB, 0x06 }, //       FRF = 433.844 MHz
     /* 0x18 */ { REG_LNA, RF_LNA_ZIN_200 | RF_LNA_CURRENTGAIN | RF_LNA_GAINSELECT_AUTO },
-    // /* 0x18 */ { REG_LNA, RF_LNA_ZIN_50 | RF_LNA_CURRENTGAIN | RF_LNA_GAINSELECT_AUTO },
-    // /* 0x19 */ { REG_RXBW, RF_RXBW_DCCFREQ_010 | RF_RXBW_MANT_24 | RF_RXBW_EXP_4 }, // BW: 10.4 kHz    
-    /* 0x19 */ { REG_RXBW, RF_RXBW_DCCFREQ_010 | RF_RXBW_MANT_20 | RF_RXBW_EXP_1 }, // BW: // 100.0 kHz
+    /* 0x19 */ { REG_RXBW, RF_RXBW_DCCFREQ_010 | RF_RXBW_MANT_24 | RF_RXBW_EXP_1 }, // BW: // 83.3 kHz
     /* 0x1A */ { REG_AFCBW, RF_AFCBW_DCCFREQAFC_010 | RF_AFCBW_MANTAFC_24 | RF_AFCBW_EXPAFC_0 },
     /* 0x1B */ { REG_OOKPEAK, RF_OOKPEAK_THRESHTYPE_PEAK | RF_OOKPEAK_PEAKTHRESHSTEP_000 | RF_OOKPEAK_PEAKTHRESHDEC_001 },
     /* 0x1D */ { REG_OOKFIX, 6 }, // Fixed threshold value (in dB) in the OOK demodulator
